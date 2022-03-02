@@ -139,6 +139,12 @@
     .project__content-top {
         max-width: 1020px;
     }
+
+    .galery__slider-img::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 279px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -547,6 +553,10 @@
                 transform: translateX(-50%);
     }
 
+    .galery__slider-image:focus-visible {
+        outline: none;
+    }
+
     .galery__content {
         height: 889px;
         -webkit-box-orient: vertical;
@@ -645,7 +655,11 @@
         max-width: none;
     }
 
- 
+    .galery__slider-img::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 314px;
+    }
 
     .desktop {
         display: -webkit-inline-box;
@@ -678,8 +692,13 @@
     }
 
     .galery__slider-container {
-        top: -15px;
+        top: 0;
         height: auto;
+    }
+
+    .galery__slider-control {
+        padding-left: 0;
+        width: 130px;
     }
 
 
@@ -688,11 +707,11 @@
     }
 
     .swiper-button-right {
-        left: 100px;
+        left: 0;
     }
 
     .swiper-pagination {
-        left: 40px;
+        left: 0;
     }
 
     .catalog__content-top {
@@ -703,6 +722,13 @@
         padding-top: 25px;
         padding-bottom: 27px;
         margin-right: 60px;
+    }
+
+
+    .galery__slider-img::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 279px;
     }
 
     .catalog {
@@ -1328,8 +1354,19 @@
         margin-bottom: 50px;
     }
 
+    .galery__slider {
+        height: 371px;
+    }
+
     .galery__slider-container {
         top: 0;
+        flex-direction: column-reverse;
+        height: 422px;
+    }
+
+    .galery__slider-control {
+        padding-left: 80px;
+        width: 210px;
     }
 
     .galery__slider-img img {
@@ -1341,7 +1378,7 @@
         padding-bottom: 0;
         max-width: 291px;
         height: 311px;
-        margin-bottom: 22px;
+        margin-bottom: 17px;
     }
 
     .galery__content-title {
@@ -1358,23 +1395,23 @@
         margin-bottom: 4px;
     }
 
-    .swiper-button-left {
+   /*  .swiper-button-left {
         bottom: 15px;
         left: 80px;
         top: initial;
-    }
+    } */
 
-    .swiper-button-right {
+    /* .swiper-button-right {
         bottom: 15px;
         left: 180px;
         top: initial;
-    }
+    } */
 
-    .swiper-pagination {
+   /*  .swiper-pagination {
         bottom: 25px;
         left: 119px;
         top: initial;
-    }
+    } */
 
     .galery__slider-content {
         padding-top: 0;
