@@ -26,26 +26,26 @@ let mySwiper = new Swiper(slider, {
 
 let mySwiper1 = new Swiper(slider1, {
 	slidesPerView: "auto",
-    spaceBetween: 50,
-    loop: true,
-    /* loopedSlides: 3, */
-    allowTouchMove: true,
+    spaceBetween: 40,
+        /* loop: true, */
+        /* loopedSlides: 3, */
+        allowTouchMove: true,
     // пагинация
     pagination: {
         el: '.swiper-pagination',
-		clickable: true,
-		type: 'fraction',
+		    clickable: true,
+		    type: 'fraction',
     },
     // навигация
     navigation: {
-    nextEl: '.swiper-button-right',
-    prevEl: '.swiper-button-left',
+      nextEl: '.swiper-button-right',
+      prevEl: '.swiper-button-left',
   },
   breakpoints: {
     1600: {
       slidesPerView: 3,
       slidesPerGroup: 3,
-      spaceBetween: 50,
+      spaceBetween: 43,
     },
     1301: {
       slidesPerView: 3,
@@ -78,7 +78,7 @@ let mySwiper2 = new Swiper(slider2, {
   slidesPerView: 3,
   slidesPerGroup: 3,
     spaceBetween: 50,
-    loop: true,
+    /* loop: true, */
     allowTouchMove: true,
         // пагинация
     pagination: {
@@ -127,7 +127,7 @@ let mySwiper3 = new Swiper(slider3, {
   slidesPerView: 3,
   slidesPerGroup: 3,
     spaceBetween: 48,
-    loop: true,
+    /* loop: true, */
     allowTouchMove: true,
         // пагинация
     pagination: {

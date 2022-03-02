@@ -27,6 +27,7 @@ function init(){
 
     var zoomControl = new ymaps.control.ZoomControl({
         options: {
+            size: "small",
             position: {
                 top: 315,
                 right: 10,

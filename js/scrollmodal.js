@@ -1,6 +1,8 @@
 	const 	btnOff = document.querySelector('.swiper-slide-btn'),
-		btnOn = document.querySelector('.modal-btn-off'),
-		body = document.body;
+			btnOn = document.querySelector('.modal-btn-off'),
+			menuOff = document.querySelector('.burger'),
+			menuOn = document.querySelector('.burger-menu-off'),
+			body = document.body;
 
 let disableScroll = function () {
 	let pagePosition = window.scrollY;
@@ -27,4 +29,16 @@ btnOn.addEventListener('click', (e) => {
 	enableScroll();
 	e.currentTarget.style.pointerEvents = 'none';
 	btnOff.style.pointerEvents = 'auto';
+});
+
+menuOff.addEventListener('click', (e) => {
+	disableScroll();
+	e.currentTarget.style.pointerEvents = 'none';
+	menuOn.style.pointerEvents = 'auto';
+});
+
+menuOn.addEventListener('click', (e) => {
+	enableScroll();
+	e.currentTarget.style.pointerEvents = 'none';
+	menuOff.style.pointerEvents = 'auto';
 });

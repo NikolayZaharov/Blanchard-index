@@ -547,6 +547,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     border: 1px solid transparent;
+    transition: border .3s ease-in-out;
 }
 
 .dropdown-link:active {
@@ -581,10 +582,23 @@ body {
     border-bottom: 1px solid var(--color-border);
     background-color: transparent;
     outline: transparent;
+    transition: border .3s ease-in-out;
+}
+
+.search-window::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.85);;
 }
 
 .search-btns {
-    display: none;
+    border: none;
+    background: transparent;
+    width: 32px;
+    height: 30px;
+}
+
+.search-btns svg {
+    width: 32px;
+    height: 30px;
 }
 
 .search-window:focus,
@@ -653,6 +667,13 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 32px;
     height: 30px;
     cursor: pointer;
+    order: 2;
+}
+
+
+.search-tab-click-off {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .search-tab-click svg {
@@ -676,7 +697,9 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .search-tab-on {
-    display: none;
+    transform: translateY(-80px);
+    opacity: 0;
+    visibility: hidden;
 }
 
 
@@ -684,9 +707,19 @@ input[type="search"]::-webkit-search-cancel-button {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
+    position: absolute;
+    top: -24px;
+    left: -277px;
+    z-index: 10;
+    background-color: var(--color-header);
+    align-items: center;
+    height: 75px;
+    order: 1;
+    transform: translateY(0px);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s ease-in;
+            
 }
 
 
@@ -901,47 +934,59 @@ input[type="search"]::-webkit-search-cancel-button {
             flex-direction: column;
 }
 
-.checkbox-form-label {
-    position: relative;
-    cursor: pointer;
-    padding-left: 24px;
-    padding-bottom: 13px;
-    font-size: 16px;
-    color: var(--color-white);
+
+.checkbox-form-label:focus .checkbox-mark::after,
+.checkbox-form-label:hover .checkbox-mark::after {
+    border-color: #c283f3;
+    outline: none;
 }
 
-.checkbox-form-label:focus {
+
+.checkbox-form-label:focus .checkbox-text {
     color: #c283f3;
     border: none;
     outline: none;
 }
 
-.checkbox-form-label:hover {
+.checkbox-form-label:hover .checkbox-text {
     color: #c283f3;
 }
 
-.checkbox-form-label:hover.checkbox::after {
+.checkbox-form-label:hover.checkbox-mark::after {
     border-color: #c283f3;
 }
 
-.checkbox-form-label:active {
+.checkbox-form-label:active .checkbox-text {
     color: #c283f3;
 }
 
 
-.checkbox-form-label .checkbox + .checkbox-mark:hover::after  {
+.checkbox-form-label .checkbox-mark:hover::after  {
     border-color: #c283f3;
+}
+
+.checkbox-form-label {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    outline: none;
+    cursor: pointer;
+    padding-left: 24px;
+    padding-bottom: 13px;
+    transition: color .3s ease-in-out;
 }
 
 .checkbox {
-    display: none;
+    position: absolute;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: none;
 }
 
-.checkbox:checked + .checkbox__form-label:hover {
-    color: #c283f3;
-}
 
-.checkbox + .checkbox-mark {
+.checkbox-mark {
     position: absolute;
     top: 0;
     left: 0;
@@ -949,14 +994,14 @@ input[type="search"]::-webkit-search-cancel-button {
     height: 12px;  
 }
 
-.checkbox + .checkbox-mark::before {
+.checkbox-mark::before {
     content: '';
     position: absolute;
     background-image: url(../img/mark.svg);
     background-position: center;
     background-repeat: no-repeat;
     top: 4px;
-    left: 0;
+    left: 1px;
     right: 0;
     bottom: 0;
     opacity: 0;
@@ -965,13 +1010,13 @@ input[type="search"]::-webkit-search-cancel-button {
     transition: opacity .3s ease-in-out;
 }
 
-.checkbox + .checkbox-mark::after {
+.checkbox-mark::after {
     content: '';
     position: absolute;
     width: 12px;
     height: 12px;
     top: 2px;
-    left: 0px;
+    left: 0;
     right: 0;
     bottom: 0;
     opacity: 1;
@@ -987,6 +1032,19 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .checkbox:checked + .checkbox-mark::after {
     border: 1px solid #c283f3;
+}
+
+.checkbox-text {
+    color: var(--color-white);
+    transition: color .3s ease-in-out;
+}
+
+.checkbox:checked + span + span.checkbox-text {
+    color: #c283f3;
+}
+
+input[type="checkbox"]:checked + .checkbox-form-label + {
+    color: #c283f3;
 }
 
 .colortext {
@@ -1054,6 +1112,7 @@ input[type="search"]::-webkit-search-cancel-button {
     background-color: transparent;
     padding: 0 15px !important;
     min-height: 0;
+    transition: background-color .3s ease-in-out;
 }
 
 .choices[data-type*=select-one] .choices__inner {
@@ -1084,6 +1143,7 @@ input[type="search"]::-webkit-search-cancel-button {
     z-index: 0;
     background: transparent;
     border: none;
+    transition: background-color .3s ease-in-out;
 }
 
 .is-open .choices__list--dropdown {
@@ -1094,6 +1154,7 @@ input[type="search"]::-webkit-search-cancel-button {
     padding: 0px;
     border: 1px solid var(--color-gray);
     border-radius: 6px;
+    transition: background-color .3s ease-in-out;
 }
 
 .is-selected {
@@ -1128,6 +1189,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
     background-color: transparent;
+    transition: background-color .3s ease-in-out;
 }
 
 .choices__inner:focus,
@@ -1148,10 +1210,8 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .galery__slider-img {
-    /* position: relative; */
     cursor: pointer;
     max-height: 350px;
-    /* z-index: 11; */
 }
 
 .galery__slider-image {
@@ -1159,6 +1219,13 @@ input[type="search"]::-webkit-search-cancel-button {
     cursor: pointer;
 }
 
+.galery__slider-image:focus-visible{
+    outline: 3px solid #7943A4;
+}
+
+.swiper-horizontal>.swiper-scrollbar {
+    position: unset;
+}
 
 .galery__slider-img::before {
     content: '';
@@ -1176,7 +1243,7 @@ input[type="search"]::-webkit-search-cancel-button {
     visibility: hidden;
     -webkit-transition: opacity .3s ease-in-out;
     -o-transition: opacity .3s ease-in-out;
-    transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
 }
 
 .galery__slider-image:focus .galery__slider-img::before {
@@ -1188,15 +1255,32 @@ input[type="search"]::-webkit-search-cancel-button {
 .galery__slider-img:hover::before{
     opacity: 1;
     visibility: visible;
-    z-index: 10;
+    z-index: 11;
 }
 
+.galery__slider-img:active::after {
+    opacity: 1;
+}
+
+.galery__slider-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(194, 131, 243, 0.4), rgba(194, 131, 243, 0.4));
+    z-index: 10;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
 
 .galery__slider-container {
     margin-left: auto;
     margin-right: auto;
+    padding-right: 5px;
     position: absolute;
-    top: 90px;
+    top: 105px;
     overflow: hidden;
     list-style: none;
     padding: 0;
@@ -1208,6 +1292,7 @@ input[type="search"]::-webkit-search-cancel-button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1217,8 +1302,8 @@ input[type="search"]::-webkit-search-cancel-button {
     position: relative;
     width: 100%;
     height: 100%;
-    padding-top: 75px;
-    padding-left: 12px;
+    padding-top: 30px;
+    padding-left: 6px;
     z-index: 1;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1232,26 +1317,47 @@ input[type="search"]::-webkit-search-cancel-button {
             box-sizing: content-box;
 }
 
+.galery__slider-control {
+    display: flex;
+    justify-content: space-between;
+    width: 143px;
+    padding-left: 13px;
+    align-items: center;
+}
+
+
 .swiper-button-left {
-    position: absolute;
-    top: 15px;
-    left: 13px;
+    position: relative;
     width: 30px;
     height: 30px;
+    background: #666666;
     border: none;
+    border-radius: 100px;
     outline: none;
     cursor: pointer;
+    transform: rotate(180deg);
+    transition: background-color .3s ease-in-out, border .3s ease-in-out, stroke .3s ease-in-out;
 }
 
 .swiper-button-right {
-    position: absolute;
-    top: 15px;
-    left: 113px;
+    position: relative;
     width: 30px;
     height: 30px;
+    background: #666666;
     border: none;
+    border-radius: 100px;
     outline: none;
     cursor: pointer;
+    transition: background-color .3s ease-in-out, border .3s ease-in-out, stroke .3s ease-in-out;
+}
+
+.swiper-button-right svg,
+.swiper-button-left svg {
+    transform: translate(1px, 6px);
+}
+
+.swiper-button-disabled  {
+    opacity: 0.5;
 }
 
 
@@ -1285,23 +1391,26 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .swiper-button-right:focus::after,
 .swiper-button-left:focus::after{
-    border-color: var(--color-btn);
+    border-color: var(--color-header);
     outline: none;
 }
 
-.swiper-button-left:hover path,
-.swiper-button-right:hover path {
-    fill: #D1A9F0;
-    stroke: var(--color-header);
+.swiper-button-left:hover,
+.swiper-button-right:hover {
+    background-color: var(--color-btn);
+}
+
+.swiper-button-right:active,
+.swiper-button-left:active {
+    background-color: #7943A4;
 }
 
 .swiper-button-left:active path,
 .swiper-button-right:active path,
 .swiper-button-right:active::after,
 .swiper-button-left:active::after {
-    fill: #D1A9F0;
     stroke: var(--color-header);
-    border-color: var(--color-btn);
+    border-color: var(--color-header);
 }
 
 
@@ -1449,8 +1558,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
 .swiper-pagination {
-    top: 15px;
-    left: 52px;
+    position: relative;
+    padding-top: 5px;
     width: 50px;
     height: 20px;
     font-size: 16px;
@@ -1600,6 +1709,7 @@ input[type="search"]::-webkit-search-cancel-button {
     border-top: 1px solid #cacaca;
     border-bottom: 1px solid #cacaca;
     margin-top: -1px;
+    transition: border .3s ease-in-out;
 }
 
 .catalog__items-title {
@@ -1654,7 +1764,6 @@ input[type="search"]::-webkit-search-cancel-button {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    /* padding: 22px 0; */
     margin-right: 62px;
     padding-top: 22px;
     padding-bottom: 20px;
@@ -1720,7 +1829,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .catalog__items:hover {
-    border-color: var(--color-akr-btn-active);
+    border-color: var(--color-akr);
     outline: none;
     position: relative;
     z-index: 1;
@@ -1788,8 +1897,8 @@ input[type="search"]::-webkit-search-cancel-button {
     border: none;
 }
 
-.ui-state-active .catalog__items {
-    border-color: var(--color-btn);
+.ui-accordion-header-active {
+    border-color: var(--color-akr);
 }
 
 .ui-state-active .catalog__items-btns {
@@ -1948,16 +2057,6 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 100%;
 }
 
-/* .event__page-down {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 500px;
-    height: 100%;
-    padding: 2px 48px 43px 50px;
-    border: 1px solid #cacaca;
-    border-top: none;
-} */
 
 .event__page-down {
     display: -webkit-box;
@@ -2030,8 +2129,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
 .event__wrap-items {
-    /* display: flex;
-    flex-direction: column; */
     max-width: 500px;
     width: 100%;
     min-height: 700px;
@@ -2119,6 +2216,10 @@ input[type="search"]::-webkit-search-cancel-button {
     color: var(--color-gray);
 }
 
+.swiper-button-disabled + .swiper-button-right1 {
+    display: none;
+}
+
 
 .swiper-button-right1 {
     position: absolute;
@@ -2152,27 +2253,74 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .swiper-button-right1 svg {
     position: absolute;
-    top: 14px;
-    right: 16px;
+    top: 16px;
+    right: 18px;
 }
 
+
+.swiper-button-left1:focus::after,
 .swiper-button-right1:focus::after {
     border-color: var(--color-btn);
     outline: none;
 }
 
 
+.swiper-button-left1:hover,
 .swiper-button-right1:hover {
     background-color: var(--color-akr-btn-active);
 }
 
 
+.swiper-button-left1:active,
 .swiper-button-right1:active {
     background-color: var(--color-akr-btn-active);
 }
 
+
+.swiper-button-left1:active::after,
 .swiper-button-right1:active::after {
     border-color: var(--color-akr);
+}
+
+.swiper-button-left1 {
+    position: absolute;
+    top: 410px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    border: none;
+    background-color: #ececec;
+    z-index: 2;
+    cursor: pointer;
+    -webkit-transition: background-color .3s ease-in-out;
+    -o-transition: background-color .3s ease-in-out;
+    transition: background-color .3s ease-in-out;
+}
+
+.swiper-button-left1::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    -webkit-transition: border .3s ease-in-out;
+    -o-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+
+.swiper-button-left1 svg {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.swiper-button-left1.swiper-button-disabled {
+    display: none !important;
 }
 
 /* -------------------project------------------- */
@@ -2371,6 +2519,7 @@ input[type="search"]::-webkit-search-cancel-button {
     border-radius: 100px;
     background-color: #ececec;
     cursor: pointer;
+    transition: border .3s ease-in-out, background-color .3s ease-in-out;
 }
 
 .swiper-button-right2::after {
@@ -2403,6 +2552,7 @@ input[type="search"]::-webkit-search-cancel-button {
     border-radius: 100px;
     background-color: #ececec;
     cursor: pointer;
+    transition: border .3s ease-in-out, background-color .3s ease-in-out;
 }
 
 .swiper-button-left2::after {
@@ -2425,13 +2575,6 @@ input[type="search"]::-webkit-search-cancel-button {
     left: 10px;
 }
 
-
-
-.swiper-button-right1 svg {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-}
 
 .swiper-button-right2:focus::after,
 .swiper-button-left2:focus::after {
