@@ -960,6 +960,16 @@ input[type="search"]::-webkit-search-cancel-button {
     color: #c283f3;
 }
 
+.checkbox:focus-visible ~ .checkbox-mark::after {
+    border-color: #c283f3;
+    color: #c283f3;
+}
+
+.checkbox:focus-visible ~ .checkbox-text {
+    border-color: #c283f3;
+    color: #c283f3;
+}
+
 
 .checkbox-form-label .checkbox-mark:hover::after  {
     border-color: #c283f3;
@@ -2319,6 +2329,7 @@ input[type="checkbox"]:checked + .checkbox-form-label + {
     transform: rotate(180deg);
 }
 
+.swiper-button-right1.swiper-button-disabled,
 .swiper-button-left1.swiper-button-disabled {
     display: none !important;
 }

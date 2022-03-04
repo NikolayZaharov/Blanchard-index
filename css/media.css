@@ -1277,9 +1277,9 @@
     }
 
     .search-tab-on {
-        position: absolute;
+        position: fixed;
         top: 9px;
-        left: -287px;
+        left: 0;
         width: 320px;
         height: 66px;
         background-color: rgba(0, 0, 0, 0.9);
